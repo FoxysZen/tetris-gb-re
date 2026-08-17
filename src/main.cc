@@ -18,9 +18,10 @@ int main (int argc, char *argv[])
     {
         InputManager::processEvents(&game);
 
-        game.update();
-
+        // In the original ROM, first renders the game and then updates it.
         renderer.render(&game);
+        
+        game.update();
 
         // Limits to 60FPS
         SDL_Delay(16);
