@@ -23,6 +23,8 @@ struct GameState
     uint16_t linesCleared = 0; // 0xFF9E
     uint8_t level = 0;         // 0xFFA9
 
+    uint8_t xPos = 0;          // 4 addr, one for each block. Unknown for now.
+
     MusicID currentMusic = MUSIC_TYPE_A;
                                // 0xFFC1 (HRAM) sends petitions to change the 
                                //   music
@@ -31,6 +33,10 @@ struct GameState
                                //   moving the piece, completing a line, death 
                                //   music, writting the player name, selecting 
                                //   game type...
+
+    bool playerMode = 0;       // 0xC001, 0xCFFC or 0xFFC5
+                               // probably FFC5 sends petition and CFFC is the 
+                               // real flag. I don't know what C001 does.
 
 
 
@@ -76,6 +82,10 @@ struct GameState
         0x - First punctuation of level 9
         0x - Second punctuation of level 9
         0x - Third punctuation of level 9
+
+        ========
+        // Maybe its wrong: wInputEventRequest 0xDFE0 - Logics, updates 0xDFE1
+                                               0xDFE1 - SFX
     */
 };
 
